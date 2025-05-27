@@ -60,6 +60,8 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
     public static void everyTick(Plugin plugin) {
         plugin.getLogger().info("Задержки:");
         for (Player player : cooldowns.keySet()) {
+            Component messageForActionBar = Component.empty();
+
             Map<Material, Integer> playerCooldowns = cooldowns.get(player);
             if (playerCooldowns == null) continue;
 
@@ -70,6 +72,10 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
                 Material material = entry.getKey();
                 int time = entry.getValue();
 
+                messageForActionBar = messageForActionBar.append(
+                        Component.text("/ " + material.name() + ": " +
+                                String.format("%.1f", (double) time / 20) + " /")
+                );
                 plugin.getLogger().info("  " + material.name() + ": " + time);
 
                 if (time <= 0) {
@@ -78,6 +84,8 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
                     entry.setValue(time - 1);
                 }
             }
+
+            player.sendActionBar(messageForActionBar);
         }
     }
 
