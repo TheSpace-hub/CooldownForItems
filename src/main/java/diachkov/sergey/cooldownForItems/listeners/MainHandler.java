@@ -24,7 +24,7 @@ public class MainHandler implements Listener {
     }
 
     @EventHandler
-    public void onPPlayerQuit(PlayerQuitEvent event) {
+    public void onPlayerQuit(PlayerQuitEvent event) {
         CooldownForItems.removePlayerFromCooldownList(event.getPlayer());
     }
 
@@ -34,12 +34,7 @@ public class MainHandler implements Listener {
         if (event.getItem() == null)
             return;
 
-        String itemId = event.getItem().getType().getKey().asString();
-        if (!plugin.getConfig().getConfigurationSection("items").isSet(itemId))
-            return;
-
         CooldownForItems.addCooldown(plugin, player, event.getItem().getType());
-
     }
 
 }

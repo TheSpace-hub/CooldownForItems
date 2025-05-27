@@ -39,7 +39,7 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
         if (checkCooldown(plugin, player, material))
             return;
 
-        String minecraftId = material.getKey().asString();
+        String minecraftId = material.getKey().asString().replace("minecraft:", "");
         if (!plugin.getConfig().getConfigurationSection("items").isSet(minecraftId))
             return;
 
@@ -49,14 +49,14 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
     }
 
     public static boolean checkCooldown(Plugin plugin, Player player, Material material) {
-        String minecraftId = material.getKey().asString();
+        String minecraftId = material.getKey().asString().replace("minecraft:", "");
         if (!plugin.getConfig().getConfigurationSection("items").isSet(minecraftId))
             return false;
 
         return cooldowns.get(player).containsKey(material);
     }
 
-    public static void everyTick(Plugin plugin) {
+    public static void everyTick() {
         for (Player player : cooldowns.keySet()) {
             Component messageForActionBar = Component.empty();
 
@@ -70,8 +70,8 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
                 int time = entry.getValue();
 
                 messageForActionBar = messageForActionBar.append(
-                        Component.text("/ " + material.name() + ": " +
-                                String.format("%.1f", (double) time / 20) + " /")
+                        Component.text("/ " + material.name().toLowerCase().replace("_", " ")
+                                + ": " + String.format("%.1f", (double) time / 20) + " /")
                 );
 
                 if (time <= 0) {
@@ -97,6 +97,6 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
 
     @Override
     public void run() {
-        everyTick(this);
+        everyTick();
     }
 }
