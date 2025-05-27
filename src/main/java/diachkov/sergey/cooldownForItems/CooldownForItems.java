@@ -1,5 +1,6 @@
 package diachkov.sergey.cooldownForItems;
 
+import diachkov.sergey.cooldownForItems.listeners.MainHandler;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,5 +20,7 @@ public final class CooldownForItems extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         printItemsWithCooldown();
+
+        getServer().getPluginManager().registerEvents(new MainHandler(this), this);
     }
 }
