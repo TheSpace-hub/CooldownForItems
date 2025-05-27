@@ -30,19 +30,6 @@ public class MainHandler implements Listener {
     }
 
     @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
-        if (event.getItem() == null)
-            return;
-        Material material = event.getItem().getType();
-        if (CooldownForItems.checkCooldown(plugin, player, material)) {
-            event.setCancelled(true);
-            return;
-        }
-        CooldownForItems.addCooldown(plugin, player, material);
-    }
-
-    @EventHandler
     public void onPlayerItemConsume(PlayerItemConsumeEvent event) {
         Player player = event.getPlayer();
         Material material = event.getItem().getType();
