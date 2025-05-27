@@ -90,6 +90,10 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
         saveDefaultConfig();
         printItemsWithCooldown();
 
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            addPlayerToCooldownsList(player);
+        }
+
         getServer().getPluginManager().registerEvents(new MainHandler(this), this);
 
         Bukkit.getScheduler().runTaskTimer(this, this, 0L, 1L);
