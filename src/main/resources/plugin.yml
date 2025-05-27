@@ -1,0 +1,4 @@
+name: CooldownForItems
+version: '1.0-SNAPSHOT'
+main: diachkov.sergey.cooldownForItems.CooldownForItems
+api-version: '1.18'
