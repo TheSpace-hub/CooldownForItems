@@ -5,7 +5,6 @@ import diachkov.sergey.cooldownForItems.listeners.MainHandler;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,16 +16,6 @@ import java.util.Map;
 public final class CooldownForItems extends JavaPlugin implements Runnable {
 
     private static Map<Player, Map<Material, Integer>> cooldowns = new HashMap<>();
-
-    private void printItemsWithCooldown() {
-        getLogger().info("Список вещей с ограничениями:");
-        ConfigurationSection items = getConfig().getConfigurationSection("items");
-        assert items != null;
-
-        for (String item : items.getKeys(false)) {
-            getLogger().info("  " + item + ": " + items.getInt(item));
-        }
-    }
 
     public static void addPlayerToCooldownsList(Player player) {
         cooldowns.put(player, new HashMap<>());
@@ -89,7 +78,6 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        printItemsWithCooldown();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             addPlayerToCooldownsList(player);
