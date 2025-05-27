@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.*;
@@ -61,7 +62,7 @@ public class MainHandler implements Listener {
     }
 
     @EventHandler
-    public void onBlockDamage(BlockDamageEvent event) {
+    public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         Material material = player.getInventory().getItemInMainHand().getType();
         if (CooldownForItems.checkCooldown(plugin, player, material)) {
