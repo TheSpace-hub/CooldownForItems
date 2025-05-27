@@ -1,6 +1,7 @@
 package diachkov.sergey.cooldownForItems;
 
 import diachkov.sergey.cooldownForItems.listeners.MainHandler;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -45,7 +46,7 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
 
         int cooldown = plugin.getConfig().getConfigurationSection("items").getInt(minecraftId);
 
-        cooldowns.get(player).put(material, cooldown);
+        cooldowns.get(player).put(material, cooldown * 20);
     }
 
     public static boolean checkCooldown(Plugin plugin, Player player, Material material) {
