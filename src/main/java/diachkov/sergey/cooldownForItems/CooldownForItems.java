@@ -1,5 +1,6 @@
 package diachkov.sergey.cooldownForItems;
 
+import diachkov.sergey.cooldownForItems.commands.Cooldown;
 import diachkov.sergey.cooldownForItems.listeners.MainHandler;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -95,6 +96,8 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
         }
 
         getServer().getPluginManager().registerEvents(new MainHandler(this), this);
+        getCommand("cooldown").setExecutor(new Cooldown(this));
+        getCommand("cooldown").setTabCompleter(new Cooldown(this));
 
         Bukkit.getScheduler().runTaskTimer(this, this, 0L, 1L);
     }

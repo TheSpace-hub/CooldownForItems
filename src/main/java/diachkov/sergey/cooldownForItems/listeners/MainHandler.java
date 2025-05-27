@@ -12,7 +12,7 @@ import org.bukkit.plugin.Plugin;
 
 public class MainHandler implements Listener {
 
-    private Plugin plugin;
+    private final Plugin plugin;
 
     public MainHandler(Plugin plugin) {
         this.plugin = plugin;
