@@ -62,6 +62,7 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
             Map<Material, Integer> playerCooldowns = cooldowns.get(player);
             if (playerCooldowns == null) continue;
 
+            plugin.getLogger().info(" " + player.getName() + ": ");
             Iterator<Map.Entry<Material, Integer>> iterator = playerCooldowns.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry<Material, Integer> entry = iterator.next();

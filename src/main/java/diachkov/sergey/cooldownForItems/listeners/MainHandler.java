@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
 
@@ -20,6 +21,11 @@ public class MainHandler implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         CooldownForItems.addPlayerToCooldownsList(event.getPlayer());
+    }
+
+    @EventHandler
+    public void onPPlayerQuit(PlayerQuitEvent event) {
+        CooldownForItems.removePlayerFromCooldownList(event.getPlayer());
     }
 
     @EventHandler
