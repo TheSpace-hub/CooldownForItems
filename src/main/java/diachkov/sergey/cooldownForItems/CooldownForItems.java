@@ -10,7 +10,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -58,14 +57,12 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
     }
 
     public static void everyTick(Plugin plugin) {
-        plugin.getLogger().info("Задержки:");
         for (Player player : cooldowns.keySet()) {
             Component messageForActionBar = Component.empty();
 
             Map<Material, Integer> playerCooldowns = cooldowns.get(player);
             if (playerCooldowns == null) continue;
 
-            plugin.getLogger().info(" " + player.getName() + ": ");
             Iterator<Map.Entry<Material, Integer>> iterator = playerCooldowns.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry<Material, Integer> entry = iterator.next();
@@ -76,7 +73,6 @@ public final class CooldownForItems extends JavaPlugin implements Runnable {
                         Component.text("/ " + material.name() + ": " +
                                 String.format("%.1f", (double) time / 20) + " /")
                 );
-                plugin.getLogger().info("  " + material.name() + ": " + time);
 
                 if (time <= 0) {
                     iterator.remove();
