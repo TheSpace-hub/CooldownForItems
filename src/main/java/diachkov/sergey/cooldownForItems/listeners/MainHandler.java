@@ -36,7 +36,9 @@ public class MainHandler implements Listener {
         if (CooldownForItems.checkCooldown(plugin, player, material)) {
             event.setCancelled(true);
         }
-        CooldownForItems.addCooldown(plugin, player, material);
+
+        if (!player.hasPermission("cooldownforitems.ignore"))
+            CooldownForItems.addCooldown(plugin, player, material);
     }
 
     @EventHandler
@@ -45,7 +47,9 @@ public class MainHandler implements Listener {
         if (CooldownForItems.checkCooldown(plugin, player, Material.FISHING_ROD)) {
             event.setCancelled(true);
         }
-        CooldownForItems.addCooldown(plugin, player, Material.FISHING_ROD);
+
+        if (!player.hasPermission("cooldownforitems.ignore"))
+            CooldownForItems.addCooldown(plugin, player, Material.FISHING_ROD);
     }
 
     @EventHandler
@@ -57,7 +61,9 @@ public class MainHandler implements Listener {
         if (CooldownForItems.checkCooldown(plugin, player, material)) {
             event.setCancelled(true);
         }
-        CooldownForItems.addCooldown(plugin, player, material);
+
+        if (!player.hasPermission("cooldownforitems.ignore"))
+            CooldownForItems.addCooldown(plugin, player, material);
     }
 
     @EventHandler
@@ -67,7 +73,9 @@ public class MainHandler implements Listener {
         if (CooldownForItems.checkCooldown(plugin, player, material)) {
             event.setCancelled(true);
         }
-        CooldownForItems.addCooldown(plugin, player, material);
+
+        if (!player.hasPermission("cooldownforitems.ignore"))
+            CooldownForItems.addCooldown(plugin, player, material);
     }
 
 }
