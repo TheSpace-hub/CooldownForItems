@@ -48,7 +48,7 @@ public class Cooldown implements CommandExecutor, TabCompleter {
             player.sendMessage(errorMessage);
             return false;
         }
-        plugin.getLogger().info("§aКонфиг перезагружен");
+        plugin.getLogger().info("Конфиг перезагружен");
         return false;
     }
 
